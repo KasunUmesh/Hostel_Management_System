@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="561.0" prefWidth="980.0" styleClass="colorGrad" stylesheets="@assest/styles/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+<AnchorPane fx:id="root" prefHeight="561.0" prefWidth="980.0" styleClass="colorGrad" stylesheets="@assest/styles/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
    <children>
       <Label layoutX="24.0" layoutY="27.0" prefHeight="47.0" prefWidth="582.0" text="HOSTEL MANAGEMENT SYSTEM" textFill="#2c3e50">
          <font>
