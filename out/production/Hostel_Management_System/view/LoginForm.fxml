@@ -42,12 +42,12 @@
             <Font size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="txtHidePassword" labelFloat="true" layoutX="638.0" layoutY="365.0" prefHeight="35.0" prefWidth="314.0" promptText="Enter Password">
+      <JFXPasswordField fx:id="txtHidePassword" labelFloat="true" layoutX="638.0" layoutY="365.0" onKeyReleased="#HidePasswordOnAction" prefHeight="35.0" prefWidth="314.0" promptText="Enter Password">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXTextField fx:id="txtShowPassword" labelFloat="true" layoutX="638.0" layoutY="365.0" prefHeight="35.0" prefWidth="314.0" promptText="Enter Password" visible="false">
+      <JFXTextField fx:id="txtShowPassword" labelFloat="true" layoutX="638.0" layoutY="365.0" onKeyReleased="#ShowPasswordOnAction" prefHeight="35.0" prefWidth="314.0" promptText="Enter Password" visible="false">
          <font>
             <Font size="15.0" />
          </font>
