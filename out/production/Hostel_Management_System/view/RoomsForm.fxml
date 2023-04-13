@@ -84,7 +84,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="732.0" layoutY="785.0" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10;" text="Edit" textFill="WHITE">
+                  <JFXButton layoutX="732.0" layoutY="785.0" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10;" text="Remove" textFill="WHITE">
                      <styleClass>
                         <String fx:value="removeButton" />
                         <String fx:value="removeButton1" />
