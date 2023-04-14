@@ -67,12 +67,12 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <TableView layoutX="42.0" layoutY="315.0" prefHeight="449.0" prefWidth="1258.0">
+                  <TableView fx:id="tblRoomDetails" layoutX="42.0" layoutY="315.0" prefHeight="449.0" prefWidth="1258.0">
                     <columns>
-                      <TableColumn prefWidth="242.0" text="Room Type ID" />
-                      <TableColumn minWidth="7.000007629394531" prefWidth="358.0" text="Room Type" />
-                        <TableColumn minWidth="7.000007629394531" prefWidth="369.66668701171875" text="Key Money (LKR)" />
-                        <TableColumn minWidth="7.000007629394531" prefWidth="288.3333740234375" text="Rooms QTY" />
+                      <TableColumn fx:id="colRoomTypeID" prefWidth="242.0" text="Room Type ID" />
+                      <TableColumn fx:id="colRoomType" minWidth="7.000007629394531" prefWidth="358.0" text="Room Type" />
+                        <TableColumn fx:id="colKeyMoney" minWidth="7.000007629394531" prefWidth="369.66668701171875" text="Key Money (LKR)" />
+                        <TableColumn fx:id="colRoomQty" minWidth="7.000007629394531" prefWidth="288.3333740234375" text="Rooms QTY" />
                     </columns>
                   </TableView>
                   <JFXButton layoutX="1031.0" layoutY="785.0" onAction="#btnEditOnAction" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Edit" textFill="WHITE">
