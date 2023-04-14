@@ -33,23 +33,23 @@
             </HBox>
             <AnchorPane prefHeight="891.0" prefWidth="1330.0">
                <children>
-                  <JFXTextField layoutX="43.0" layoutY="78.0" prefHeight="40.0" prefWidth="272.0" promptText="Room Type ID">
+                  <JFXTextField fx:id="txtRoomTypeID" layoutX="43.0" layoutY="78.0" prefHeight="40.0" prefWidth="272.0" promptText="Room Type ID">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXComboBox layoutX="359.0" layoutY="78.0" prefHeight="40.0" prefWidth="302.0" promptText="Room Type" />
-                  <JFXTextField layoutX="710.0" layoutY="78.0" prefHeight="40.0" prefWidth="281.0" promptText="Key Money">
+                  <JFXComboBox fx:id="cmbRoomType" layoutX="359.0" layoutY="78.0" prefHeight="40.0" prefWidth="302.0" promptText="Room Type" />
+                  <JFXTextField fx:id="txtKeyMoney" layoutX="710.0" layoutY="78.0" prefHeight="40.0" prefWidth="281.0" promptText="Key Money">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField layoutX="1023.0" layoutY="78.0" prefHeight="40.0" prefWidth="264.0" promptText="Rooms QTY">
+                  <JFXTextField fx:id="txtRoomQTY" layoutX="1023.0" layoutY="78.0" prefHeight="40.0" prefWidth="264.0" promptText="Rooms QTY">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton layoutX="1028.0" layoutY="185.0" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10;" text="Add Room" textFill="WHITE">
+                  <JFXButton layoutX="1028.0" layoutY="185.0" onAction="#btnAddRoomOnAction" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10;" text="Add Room" textFill="WHITE">
                      <styleClass>
                         <String fx:value="addEmpButton" />
                         <String fx:value="addEmpButton1" />
@@ -58,7 +58,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="720.0" layoutY="185.0" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: #e67e22;" text="Update" textFill="WHITE">
+                  <JFXButton layoutX="720.0" layoutY="185.0" onAction="#btnUpdateOnAction" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: #e67e22;" text="Update" textFill="WHITE">
                      <styleClass>
                         <String fx:value="addEmpButton" />
                         <String fx:value="addEmpButton1" />
@@ -75,7 +75,7 @@
                         <TableColumn minWidth="7.000007629394531" prefWidth="288.3333740234375" text="Rooms QTY" />
                     </columns>
                   </TableView>
-                  <JFXButton layoutX="1031.0" layoutY="785.0" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Edit" textFill="WHITE">
+                  <JFXButton layoutX="1031.0" layoutY="785.0" onAction="#btnEditOnAction" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Edit" textFill="WHITE">
                      <styleClass>
                         <String fx:value="addEmpButton" />
                         <String fx:value="addEmpButton1" />
@@ -84,7 +84,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="732.0" layoutY="785.0" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10;" text="Remove" textFill="WHITE">
+                  <JFXButton layoutX="732.0" layoutY="785.0" onAction="#btnRemoveOnAction" prefHeight="67.0" prefWidth="266.0" style="-fx-background-radius: 10;" text="Remove" textFill="WHITE">
                      <styleClass>
                         <String fx:value="removeButton" />
                         <String fx:value="removeButton1" />
