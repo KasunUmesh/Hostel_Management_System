@@ -108,7 +108,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <Pane fx:id="pnRoomResDetails" layoutY="368.0" prefHeight="507.0" prefWidth="1330.0" visible="false">
+                  <Pane fx:id="pnRoomResDetails" layoutY="368.0" prefHeight="507.0" prefWidth="1330.0">
                      <children>
                         <TableView layoutX="43.0" layoutY="67.0" prefHeight="366.0" prefWidth="1247.0">
                           <columns>
@@ -154,7 +154,7 @@
                         </JFXButton>
                      </children>
                   </Pane>
-                  <Pane fx:id="pnStudentDetails" layoutY="368.0" prefHeight="507.0" prefWidth="1330.0">
+                  <Pane fx:id="pnStudentDetails" layoutY="368.0" prefHeight="507.0" prefWidth="1330.0" visible="false">
                      <children>
                         <Separator layoutX="35.0" layoutY="12.0" prefHeight="4.0" prefWidth="1244.0" />
                         <JFXTextField labelFloat="true" layoutX="898.0" layoutY="36.0" prefHeight="38.0" prefWidth="378.0" promptText="Search">
