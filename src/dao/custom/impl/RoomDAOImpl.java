@@ -4,9 +4,11 @@ import dao.custom.RoomDAO;
 import entity.Room;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import util.FactoryConfigration;
 
 import java.util.List;
+import java.util.Queue;
 
 public class RoomDAOImpl implements RoomDAO {
     @Override
@@ -23,12 +25,27 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public boolean update(Room entity) {
-        return false;
+
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        return true;
     }
 
     @Override
     public boolean delete(String s) {
-        return false;
+
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Room room = session.get(Room.class, s);
+        session.delete(room);
+
+        transaction.commit();
+        return true;
     }
 
     @Override
@@ -38,6 +55,14 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public List<Room> findAll() {
-        return null;
+
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from Room");
+        List<Room> list = query.list();
+
+        transaction.commit();
+        session.close();
+        return list;
     }
 }
