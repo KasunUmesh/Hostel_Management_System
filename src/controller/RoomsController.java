@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -45,6 +46,7 @@ public class RoomsController {
         colKeyMoney.setCellValueFactory(new PropertyValueFactory<>("key_money"));
         colRoomQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
     }
+
 
     private void findAll() {
         ObservableList<RoomTM> tmList = FXCollections.observableArrayList();
@@ -84,11 +86,50 @@ public class RoomsController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+        String id = txtRoomTypeID.getText();
+        String roomType = (String) cmbRoomType.getValue();
+        double keyMoney = Double.parseDouble(txtKeyMoney.getText());
+        int roomQTY = Integer.parseInt(txtRoomQTY.getText());
+
+        if (roomBO.update(new RoomDTO(
+                id,
+                roomType,
+                keyMoney,
+                roomQTY
+        ))) {
+            txtRoomTypeID.setText(null);
+            cmbRoomType.setValue("");
+            txtKeyMoney.setText(null);
+            txtRoomQTY.setText(null);
+            new Alert(Alert.AlertType.INFORMATION, "Updated...!").show();
+            findAll();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Something Wrong").show();
+        }
+
     }
 
     public void btnEditOnAction(ActionEvent actionEvent) {
+        RoomTM selectedRoom = tblRoomDetails.getSelectionModel().getSelectedItem();
+        txtRoomTypeID.setText(selectedRoom.getRoom_type_id());
+        cmbRoomType.setValue(selectedRoom.getRoom_type());
+        txtKeyMoney.setText(String.valueOf(selectedRoom.getKey_money()));
+        txtRoomQTY.setText(String.valueOf(selectedRoom.getQty()));
     }
 
     public void btnRemoveOnAction(ActionEvent actionEvent) {
+
+        String id = tblRoomDetails.getSelectionModel().getSelectedItem().getRoom_type_id();
+
+        boolean roomDelete = roomBO.delete(id);
+
+        if (roomDelete) {
+            new Alert(Alert.AlertType.CONFIRMATION,"Delete Successfully", ButtonType.OK).show();
+            findAll();
+
+        } else {
+            new Alert(Alert.AlertType.WARNING,"Delete Error",ButtonType.OK).show();
+        }
+
     }
 }
