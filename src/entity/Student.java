@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Entity
-public class Student {
+public class Student implements SuperEntity{
     @Id
     private String student_ID;
     private String name;
