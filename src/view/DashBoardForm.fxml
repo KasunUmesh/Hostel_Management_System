@@ -102,8 +102,33 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="BED" size="25" />
                      </graphic>
                      <VBox.margin>
-                        <Insets bottom="470.0" />
+                        <Insets bottom="40.0" />
                      </VBox.margin>
+                  </Button>
+                  <Button id="button" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnReceiveRoomOnAction" prefHeight="46.0" prefWidth="250.0" style="-fx-background-radius: 20px;" text="Receive Room" textFill="WHITE">
+                     <padding>
+                        <Insets right="29.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="buttonDash" />
+                        <String fx:value="buttonShadow" />
+                        <String fx:value="allButton" />
+                     </styleClass>
+                     <effect>
+                        <DropShadow height="22.48" radius="9.627500000000001" spread="0.07" width="18.03" />
+                     </effect>
+                     <VBox.margin>
+                        <Insets bottom="380.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assest/images/ReceiveRoom.png" />
+                           </image></ImageView>
+                     </graphic>
                   </Button>
                   <Button id="button" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutOnAction" prefHeight="46.0" prefWidth="250.0" style="-fx-background-radius: 20px;" text="Log Out" textFill="WHITE">
                      <padding>

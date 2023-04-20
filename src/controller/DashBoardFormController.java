@@ -52,6 +52,14 @@ public class DashBoardFormController {
         new FadeIn(rootHome).play();
     }
 
+    public void btnReceiveRoomOnAction(ActionEvent actionEvent) throws IOException {
+        StackPane pane = null;
+        pane = FXMLLoader.load(this.getClass().getResource("../view/ReceiveRoomForm.fxml"));
+        rootHome.getChildren().setAll(pane);
+
+        new FadeIn(rootHome).play();
+    }
+
     public void btnLogOutOnAction(ActionEvent actionEvent) throws IOException {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
         Scene scene = new Scene(parent);
@@ -65,4 +73,6 @@ public class DashBoardFormController {
         stage.show();
 
     }
+
+
 }
