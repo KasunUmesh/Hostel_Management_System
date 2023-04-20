@@ -9,7 +9,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -37,60 +36,29 @@
             </HBox>
             <AnchorPane prefHeight="891.0" prefWidth="1330.0">
                <children>
-                  <JFXTextField labelFloat="true" layoutX="43.0" layoutY="24.0" prefHeight="44.0" prefWidth="246.0" promptText="Reservation ID">
+                  <JFXTextField fx:id="txtStudentName" labelFloat="true" layoutX="230.0" layoutY="60.0" prefHeight="44.0" prefWidth="492.0" promptText="Student Name">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="662.0" layoutY="24.0" prefHeight="44.0" prefWidth="619.0" promptText="Student Name">
+                  <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="763.0" layoutY="60.0" prefHeight="44.0" prefWidth="515.0" promptText="Address">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="43.0" layoutY="108.0" prefHeight="44.0" prefWidth="496.0" promptText="Address">
+                  <JFXTextField fx:id="txtContactNumber" labelFloat="true" layoutX="43.0" layoutY="198.0" prefHeight="44.0" prefWidth="255.0" promptText="Contact Number">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="572.0" layoutY="108.0" prefHeight="44.0" prefWidth="255.0" promptText="Contact Number">
+                  <JFXDatePicker fx:id="dpDateOfBirth" layoutX="334.0" layoutY="198.0" prefHeight="44.0" prefWidth="209.0" promptText="Date of Birth" />
+                  <JFXComboBox fx:id="cmbGender" labelFloat="true" layoutX="573.0" layoutY="198.0" prefHeight="44.0" prefWidth="166.0" promptText="Gender" />
+                  <JFXTextField fx:id="txtStudentID" labelFloat="true" layoutX="43.0" layoutY="60.0" prefHeight="44.0" prefWidth="157.0" promptText="Student ID">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
-                  <JFXDatePicker layoutX="868.0" layoutY="108.0" prefHeight="44.0" prefWidth="209.0" promptText="Date of Birth" />
-                  <JFXComboBox labelFloat="true" layoutX="1111.0" layoutY="108.0" prefHeight="44.0" prefWidth="166.0" promptText="Gender" />
-                  <JFXTextField labelFloat="true" layoutX="352.0" layoutY="24.0" prefHeight="44.0" prefWidth="269.0" promptText="Student ID">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXComboBox labelFloat="true" layoutX="43.0" layoutY="205.0" prefHeight="44.0" prefWidth="258.0" promptText="Room Type" />
-                  <JFXTextField labelFloat="true" layoutX="349.0" layoutY="205.0" prefHeight="44.0" prefWidth="269.0" promptText="Room Type ID">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="665.0" layoutY="205.0" prefHeight="44.0" prefWidth="286.0" promptText="Key Money (LKR)">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="994.0" layoutY="205.0" prefHeight="44.0" prefWidth="286.0" promptText="Rooms QTY">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="43.0" layoutY="295.0" prefHeight="44.0" prefWidth="349.0" promptText="Status">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXTextField labelFloat="true" layoutX="431.0" layoutY="295.0" prefHeight="44.0" prefWidth="292.0" promptText="Date">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXButton layoutX="1049.0" layoutY="295.0" prefHeight="60.0" prefWidth="231.0" style="-fx-background-radius: 10;" text="Add Student" textFill="WHITE">
+                  <JFXButton layoutX="1049.0" layoutY="186.0" onAction="#btnAddStudentOnAction" prefHeight="60.0" prefWidth="231.0" style="-fx-background-radius: 10;" text="Add Student" textFill="WHITE">
                      <styleClass>
                         <String fx:value="addEmpButton" />
                         <String fx:value="addEmpButton1" />
@@ -99,7 +67,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="784.0" layoutY="295.0" prefHeight="60.0" prefWidth="231.0" style="-fx-background-radius: 10; -fx-background-color: #e67e22;" text="Update" textFill="WHITE">
+                  <JFXButton layoutX="784.0" layoutY="186.0" onAction="#btnUpdateOnAction" prefHeight="60.0" prefWidth="231.0" style="-fx-background-radius: 10; -fx-background-color: #e67e22;" text="Update" textFill="WHITE">
                      <styleClass>
                         <String fx:value="addEmpButton" />
                         <String fx:value="addEmpButton1" />
@@ -108,23 +76,25 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <Pane fx:id="pnRoomResDetails" layoutY="368.0" prefHeight="507.0" prefWidth="1330.0">
+                  <Pane layoutY="293.0" prefHeight="582.0" prefWidth="1330.0">
                      <children>
-                        <TableView layoutX="43.0" layoutY="67.0" prefHeight="366.0" prefWidth="1247.0">
-                          <columns>
-                            <TableColumn prefWidth="190.3333282470703" text="Reservation ID" />
-                            <TableColumn prefWidth="178.66668701171875" text="Date" />
-                              <TableColumn prefWidth="216.6666259765625" text="Student ID" />
-                              <TableColumn prefWidth="218.0" text="Room Type ID" />
-                              <TableColumn prefWidth="448.0" text="Status" />
-                          </columns>
-                        </TableView>
-                        <JFXTextField labelFloat="true" layoutX="908.0" layoutY="21.0" prefHeight="38.0" prefWidth="378.0" promptText="Search">
+                        <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="896.0" layoutY="25.0" prefHeight="38.0" prefWidth="378.0" promptText="Search">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </JFXTextField>
-                        <JFXButton layoutX="1122.0" layoutY="444.0" prefHeight="50.0" prefWidth="167.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Edit" textFill="WHITE">
+                        <TableView fx:id="tblStudentDetails" layoutX="43.0" layoutY="82.0" prefHeight="406.0" prefWidth="1236.0">
+                          <columns>
+                            <TableColumn fx:id="colStudentID" prefWidth="120.33334350585938" text="Student ID" />
+                            <TableColumn fx:id="colStName" prefWidth="320.3333435058594" text="Name" />
+                              <TableColumn fx:id="colAddress" prefWidth="306.3333740234375" text="Address" />
+                              <TableColumn fx:id="colContactNumber" prefWidth="190.6666259765625" text="Contact Number" />
+                              <TableColumn fx:id="colBirth" prefWidth="155.33331298828125" text="Date of Birth" />
+                              <TableColumn fx:id="colGender" prefWidth="146.0" text="Gender" />
+                          </columns>
+                        </TableView>
+                        <FontAwesomeIconView glyphName="SEARCH" layoutX="1243.0" layoutY="54.0" opacity="0.48" size="20" />
+                        <JFXButton layoutX="1109.0" layoutY="510.0" onAction="#btnEditOnAction" prefHeight="50.0" prefWidth="167.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Edit" textFill="WHITE">
                            <styleClass>
                               <String fx:value="addEmpButton" />
                               <String fx:value="addEmpButton1" />
@@ -133,7 +103,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="939.0" layoutY="444.0" prefHeight="50.0" prefWidth="167.0" style="-fx-background-radius: 10;" text="Remove" textFill="WHITE">
+                        <JFXButton layoutX="926.0" layoutY="510.0" onAction="#btnRemoveOnAction" prefHeight="50.0" prefWidth="167.0" style="-fx-background-radius: 10;" text="Remove" textFill="WHITE">
                            <styleClass>
                               <String fx:value="removeButton" />
                               <String fx:value="removeButton1" />
@@ -142,51 +112,6 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </JFXButton>
-                        <FontAwesomeIconView glyphName="SEARCH" layoutX="1253.0" layoutY="50.0" opacity="0.48" size="20" />
-                        <JFXButton layoutX="686.0" layoutY="444.0" onAction="#btnViewStudentDetails" prefHeight="50.0" prefWidth="234.0" style="-fx-background-radius: 10; -fx-background-color: #2980b9;" text="View Student Details" textFill="WHITE">
-                           <styleClass>
-                              <String fx:value="removeButton" />
-                              <String fx:value="removeButton1" />
-                           </styleClass>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pnStudentDetails" layoutY="368.0" prefHeight="507.0" prefWidth="1330.0" visible="false">
-                     <children>
-                        <Separator layoutX="35.0" layoutY="12.0" prefHeight="4.0" prefWidth="1244.0" />
-                        <JFXTextField labelFloat="true" layoutX="898.0" layoutY="36.0" prefHeight="38.0" prefWidth="378.0" promptText="Search">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXTextField>
-                        <TableView layoutX="43.0" layoutY="82.0" prefHeight="361.0" prefWidth="1236.0">
-                          <columns>
-                            <TableColumn prefWidth="120.33334350585938" text="Student ID" />
-                            <TableColumn prefWidth="320.3333435058594" text="Name" />
-                              <TableColumn prefWidth="306.3333740234375" text="Address" />
-                              <TableColumn prefWidth="190.6666259765625" text="Contact Number" />
-                              <TableColumn prefWidth="155.33331298828125" text="Date of Birth" />
-                              <TableColumn prefWidth="146.0" text="Gender" />
-                          </columns>
-                        </TableView>
-                        <FontAwesomeIconView glyphName="SEARCH" layoutX="1243.0" layoutY="65.0" opacity="0.48" size="20" />
-                        <JFXButton layoutX="1004.0" layoutY="450.0" onAction="#btnViewResDetails" prefHeight="50.0" prefWidth="271.0" style="-fx-background-radius: 10; -fx-background-color: #2980b9;" text="View Reservation Details" textFill="WHITE">
-                           <styleClass>
-                              <String fx:value="removeButton" />
-                              <String fx:value="removeButton1" />
-                           </styleClass>
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </JFXButton>
-                        <Label layoutX="469.0" layoutY="20.0" text="STUDENT DETAILS">
-                           <font>
-                              <Font name="System Bold" size="40.0" />
-                           </font>
-                        </Label>
                      </children>
                   </Pane>
                </children>
