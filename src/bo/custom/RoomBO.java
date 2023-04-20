@@ -6,8 +6,8 @@ import dto.RoomDTO;
 import java.util.List;
 
 public interface RoomBO extends SuperBO {
-    public boolean add(RoomDTO roomDTO);
-    public List<RoomDTO> findAll();
-    public boolean delete(String id);
-    public boolean update(RoomDTO roomDTO);
+    boolean add(RoomDTO roomDTO);
+    List<RoomDTO> findAll();
+    boolean delete(String id);
+    boolean update(RoomDTO roomDTO);
 }
