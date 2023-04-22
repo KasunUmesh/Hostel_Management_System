@@ -97,4 +97,27 @@ public class RoomDAOImpl implements RoomDAO {
         }
         return "R001";
     }
+
+    @Override
+    public Room getRoomDetails(String room_type) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("FROM Room WHERE room_type=:room_type");
+        Room room = (Room) query.setParameter("room_type", room_type).uniqueResult();
+        transaction.commit();
+        session.close();
+        return room;
+    }
+
+    @Override
+    public List<String> getRoomType() throws SQLException, ClassNotFoundException {
+        ArrayList<String> allRooms = new ArrayList<>();
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createSQLQuery("SELECT room_type FROM Room");
+        allRooms = (ArrayList<String>) query.list();
+        transaction.commit();
+        session.close();
+        return allRooms;
+    }
 }
