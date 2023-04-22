@@ -101,7 +101,7 @@
                               <TableColumn fx:id="colDate" prefWidth="178.66668701171875" text="Date" />
                               <TableColumn fx:id="colStudentID" prefWidth="216.6666259765625" text="Student ID" />
                               <TableColumn fx:id="colRoomID" prefWidth="218.0" text="Room Type ID" />
-                              <TableColumn fx:id="ColStatus" prefWidth="448.0" text="Status" />
+                              <TableColumn fx:id="colStatus" prefWidth="448.0" text="Status" />
                            </columns>
                         </TableView>
                         <JFXTextField labelFloat="true" layoutX="908.0" layoutY="21.0" prefHeight="38.0" prefWidth="378.0" promptText="Search">

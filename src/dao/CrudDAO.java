@@ -1,8 +1,9 @@
 package dao;
 
+import dto.ReservationDTO;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface CrudDAO<T, ID> extends SuperDAO{
     boolean add(T t) throws SQLException, ClassNotFoundException;

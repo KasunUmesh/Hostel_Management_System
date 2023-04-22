@@ -1,6 +1,7 @@
 package dao.custom.impl;
 
 import dao.custom.RoomDAO;
+import dto.ReservationDTO;
 import entity.Room;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,7 +11,6 @@ import util.FactoryConfigration;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class RoomDAOImpl implements RoomDAO {
     @Override

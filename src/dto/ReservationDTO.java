@@ -1,7 +1,5 @@
 package dto;
 
-import entity.Room;
-import entity.Student;
 import lombok.*;
 
 
@@ -16,7 +14,7 @@ import java.time.LocalDate;
 public class ReservationDTO implements Serializable {
     private String res_ID;
     private LocalDate resDate;
-    private Student studentID;
-    private Room roomID;
+    private String studentID;
+    private String roomID;
     private String status;
 }

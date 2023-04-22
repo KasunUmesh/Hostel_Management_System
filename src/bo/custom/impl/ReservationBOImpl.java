@@ -46,8 +46,14 @@ public class ReservationBOImpl implements ReservationBO {
     public ArrayList<ReservationDTO> getAllDetails() throws SQLException, ClassNotFoundException {
         ArrayList<ReservationDTO> allDetails = new ArrayList<>();
         ArrayList<Reservation> all = reservationDAO.findAll();
-        for (Reservation reservation : all) {
-            allDetails.add(new ReservationDTO(reservation.getRes_ID(), reservation.getResDate(), reservation.getStudent(), reservation.getRoom(), reservation.getStatus()));
+        for (ReservationDTO dto : all) {
+            allDetails.add(new ReservationDTO(
+                    dto.getRes_ID(),
+                    dto.getResDate(),
+                    dto.getStudentID(),
+                    dto.getRoomID(),
+                    dto.getStatus()
+                    ));
         }
         return allDetails;
     }

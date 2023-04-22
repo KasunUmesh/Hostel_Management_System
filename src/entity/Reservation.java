@@ -1,5 +1,6 @@
 package entity;
 
+import dto.ReservationDTO;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Reservation implements SuperEntity{
+public class Reservation extends ReservationDTO implements SuperEntity{
     @Id
     private String res_ID;
     private LocalDate resDate;

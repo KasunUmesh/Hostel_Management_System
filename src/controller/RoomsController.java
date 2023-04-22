@@ -127,7 +127,7 @@ public class RoomsController {
                 loardCmb();
             }
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to save the course " + e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR, "Failed to save the Room " + e.getMessage()).show();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

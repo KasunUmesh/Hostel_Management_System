@@ -1,6 +1,7 @@
 package dao.custom.impl;
 
 import dao.custom.ReservationDAO;
+import dto.ReservationDTO;
 import entity.Reservation;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +9,7 @@ import org.hibernate.query.Query;
 import util.FactoryConfigration;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ReservationDAOImpl implements ReservationDAO {
@@ -39,13 +41,25 @@ public class ReservationDAOImpl implements ReservationDAO {
     @Override
     public ArrayList<Reservation> findAll() throws SQLException, ClassNotFoundException {
         ArrayList<Reservation> allReservation = new ArrayList<>();
-        Session session = FactoryConfigration.getInstance().getSession();
+        Session session =FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("FROM Reservation");
         allReservation = (ArrayList<Reservation>) query.list();
         transaction.commit();
         session.close();
         return allReservation;
+    }
+    @Override
+    public ArrayList<ReservationDTO> getAllReservation() throws SQLException, ClassNotFoundException {
+      /* ArrayList<ReservationDTO> allReservation = new ArrayList<>();
+       Session session =FactoryConfigration.getInstance().getSession();
+       Transaction transaction = session.beginTransaction();
+       Query query = session.createQuery("FROM Reservation");
+       allReservation = (ArrayList<ReservationDTO>) query.list();
+       transaction.commit();
+       session.close();
+       return allReservation;*/
+        return null;
     }
 
     @Override
@@ -76,4 +90,6 @@ public class ReservationDAOImpl implements ReservationDAO {
         }
         return "RS001";
     }
+
+
 }

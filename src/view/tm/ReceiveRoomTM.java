@@ -14,8 +14,8 @@ import java.time.LocalDate;
 public class ReceiveRoomTM implements Comparable<ReceiveRoomTM>{
     private String res_ID;
     private LocalDate resDate;
-    private Student studentID;
-    private Room roomID;
+    private String studentID;
+    private String roomID;
     private String status;
 
     @Override

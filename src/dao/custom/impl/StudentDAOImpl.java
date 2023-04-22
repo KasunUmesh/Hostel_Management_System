@@ -1,6 +1,7 @@
 package dao.custom.impl;
 
 import dao.custom.StudentDAO;
+import dto.ReservationDTO;
 import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
