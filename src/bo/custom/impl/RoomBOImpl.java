@@ -54,4 +54,14 @@ public class RoomBOImpl implements RoomBO {
                 roomDTO.getQty()
         ));
     }
+
+    @Override
+    public boolean ifRoomExist(String id) throws SQLException, ClassNotFoundException {
+        return roomDAO.ifRoomExist(id);
+    }
+
+    @Override
+    public String generateNewID() throws SQLException, ClassNotFoundException {
+        return roomDAO.generateNewID();
+    }
 }

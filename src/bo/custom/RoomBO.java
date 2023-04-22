@@ -11,4 +11,6 @@ public interface RoomBO extends SuperBO {
     ArrayList<RoomDTO> findAll() throws SQLException, ClassNotFoundException;
     boolean delete(String id) throws SQLException, ClassNotFoundException;
     boolean update(RoomDTO roomDTO) throws SQLException, ClassNotFoundException;
+    boolean ifRoomExist(String id) throws SQLException, ClassNotFoundException;
+    String generateNewID() throws SQLException, ClassNotFoundException;
 }

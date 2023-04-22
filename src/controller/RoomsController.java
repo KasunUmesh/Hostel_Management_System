@@ -17,6 +17,7 @@ import view.tm.RoomTM;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RoomsController {
@@ -33,13 +34,18 @@ public class RoomsController {
     public TableColumn colRoomQty;
 
     public void initialize() {
+        txtRoomTypeID.setText(generateNewID());
+        txtRoomTypeID.setEditable(false);
+        loardCmb();
+        findAll();
+        setCellValueFactory();
+    }
+
+    private void loardCmb() {
         cmbRoomType.getItems().add("Non-AC");
         cmbRoomType.getItems().add("Non-AC / Food");
         cmbRoomType.getItems().add("AC");
         cmbRoomType.getItems().add("AC / Food");
-
-        findAll();
-        setCellValueFactory();
     }
 
     private void setCellValueFactory() {
@@ -70,6 +76,37 @@ public class RoomsController {
         }
     }
 
+    private String generateNewID() {
+        try {
+            return roomBO.generateNewID();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (tblRoomDetails.getItems().isEmpty()) {
+            return "R001";
+        } else {
+            String id = getLastRoomID();
+            int newRoomID = Integer.parseInt(id.replace("R", "")) + 1;
+            return String.format("R%03d", newRoomID);
+        }
+    }
+
+    private String getLastRoomID() {
+        List<RoomTM> tempRoomList = new ArrayList<>(tblRoomDetails.getItems());
+        Collections.sort(tempRoomList);
+        return tempRoomList.get(tempRoomList.size() - 1).getRoom_type_id();
+    }
+
+    private void clear() {
+        txtRoomTypeID.clear();
+        cmbRoomType.getItems().clear();
+        txtKeyMoney.clear();
+        txtRoomQTY.clear();
+    }
+
     public void btnAddRoomOnAction(ActionEvent actionEvent) {
         String id = txtRoomTypeID.getText();
         String roomType = (String) cmbRoomType.getValue();
@@ -83,12 +120,11 @@ public class RoomsController {
                     keyMoney,
                     roomQTY
             ))) {
-                txtRoomTypeID.setText(null);
-                cmbRoomType.getItems().clear();
-                txtKeyMoney.setText(null);
-                txtRoomQTY.setText(null);
+                clear();
                 new Alert(Alert.AlertType.INFORMATION, "Added...!").show();
                 findAll();
+                txtRoomTypeID.setText(generateNewID());
+                loardCmb();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to save the course " + e.getMessage()).show();
@@ -111,12 +147,11 @@ public class RoomsController {
                     keyMoney,
                     roomQTY
             ))) {
-                txtRoomTypeID.setText(null);
-                cmbRoomType.setValue("");
-                txtKeyMoney.setText(null);
-                txtRoomQTY.setText(null);
+                clear();
                 new Alert(Alert.AlertType.INFORMATION, "Updated...!").show();
                 findAll();
+                txtRoomTypeID.setText(generateNewID());
+                loardCmb();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Something Wrong").show();
             }
@@ -143,6 +178,8 @@ public class RoomsController {
             roomBO.delete(id);
             new Alert(Alert.AlertType.CONFIRMATION,"Delete Successfully", ButtonType.OK).show();
             findAll();
+            txtRoomTypeID.setText(generateNewID());
+            loardCmb();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to delete the course " + id).show();
         } catch (ClassNotFoundException e) {
