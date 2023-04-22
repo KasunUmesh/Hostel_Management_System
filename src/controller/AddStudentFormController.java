@@ -157,6 +157,32 @@ public class AddStudentFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+        String id = txtStudentID.getText();
+        String name = txtStudentName.getText();
+        String address = txtAddress.getText();
+        String contact = txtContactNumber.getText();
+        String dob = String.valueOf(dpDateOfBirth.getValue());
+        String gender = (String) cmbGender.getValue();
+
+        try {
+            if (!existStudent(id)) {
+                new Alert(Alert.AlertType.ERROR, id + " There is no such student associated with the id "+id).show();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated...!").show();
+                clear();
+                StudentDTO studentDTO = new StudentDTO(id, name, address, contact, dob, gender);
+                studentBO.update(studentDTO);
+                loadAllStudents();
+                txtStudentID.setText(generateNewID());
+                cmbLoad();
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to update the student " + id + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void btnEditOnAction(ActionEvent actionEvent) {
@@ -170,5 +196,22 @@ public class AddStudentFormController {
     }
 
     public void btnRemoveOnAction(ActionEvent actionEvent) {
+        String id = tblStudentDetails.getSelectionModel().getSelectedItem().getStudent_ID();
+
+        try {
+            if (!existStudent(id)) {
+                new Alert(Alert.AlertType.ERROR, "There is no such student associated with the id " + id).show();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted...!").show();
+                studentBO.delete(id);
+                loadAllStudents();
+                txtStudentID.setText(generateNewID());
+                cmbLoad();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to delete the student " + id).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
