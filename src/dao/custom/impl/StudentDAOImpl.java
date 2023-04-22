@@ -8,11 +8,13 @@ import org.hibernate.query.Query;
 import util.FactoryConfigration;
 
 import java.math.BigInteger;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
     @Override
-    public boolean add(Student entity) {
+    public boolean add(Student entity) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -24,7 +26,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean update(Student entity) {
+    public boolean update(Student entity) throws SQLException, ClassNotFoundException{
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.update(entity);
@@ -34,7 +36,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean delete(String s) {
+    public boolean delete(String s) throws SQLException, ClassNotFoundException{
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Student student = session.get(Student.class, s);
@@ -45,24 +47,30 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Student find(String s) {
-        return null;
+    public Student find(String s) throws SQLException, ClassNotFoundException{
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = session.get(Student.class, s);
+        transaction.commit();
+        session.close();
+        return student;
     }
 
     @Override
-    public List<Student> findAll() {
+    public ArrayList<Student> findAll() throws SQLException, ClassNotFoundException{
+        ArrayList<Student> allStudent = new ArrayList<>();
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("from Student");
-        List<Student> list = query.list();
+        allStudent = (ArrayList<Student>) query.list();
 
         transaction.commit();
         session.close();
-        return list;
+        return allStudent;
     }
 
     @Override
-    public boolean ifStudentExist(String id) {
+    public boolean ifStudentExist(String id) throws SQLException, ClassNotFoundException{
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("SELECT student_ID FROM Student WHERE student_ID=:id");
@@ -76,7 +84,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public String generateNewID() {
+    public String generateNewID() throws SQLException, ClassNotFoundException{
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("SELECT student_ID FROM Student ORDER BY student_ID DESC LIMIT 1");
@@ -84,14 +92,14 @@ public class StudentDAOImpl implements StudentDAO {
         transaction.commit();
         session.close();
         if (s!=null) {
-            int newStudentID = Integer.parseInt(s.replace("s", "")) + 1;
+            int newStudentID = Integer.parseInt(s.replace("S", "")) + 1;
             return String.format("S%03d", newStudentID);
         }
         return "S001";
     }
 
     @Override
-    public BigInteger studentCount() {
+    public BigInteger studentCount() throws SQLException, ClassNotFoundException{
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("SELECT COUNT(*) FROM Student");

@@ -15,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import view.tm.RoomTM;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoomsController {
@@ -23,7 +25,7 @@ public class RoomsController {
     public JFXTextField txtKeyMoney;
     public JFXTextField txtRoomQTY;
 
-    private final RoomBO roomBO = BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
+    private final RoomBO roomBO = (RoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ROOM);
     public TableView<RoomTM> tblRoomDetails;
     public TableColumn colRoomTypeID;
     public TableColumn colRoomType;
@@ -49,18 +51,23 @@ public class RoomsController {
 
 
     private void findAll() {
-        ObservableList<RoomTM> tmList = FXCollections.observableArrayList();
-        List<RoomDTO> all = roomBO.findAll();
-        for (RoomDTO dto : all) {
-            RoomTM tm = new RoomTM(
-                    dto.getRoom_type_id(),
-                    dto.getRoom_type(),
-                    dto.getKey_money(),
-                    dto.getQty()
-            );
-            tmList.add(tm);
+        tblRoomDetails.getItems().clear();
+
+        try {
+            ArrayList<RoomDTO> allRooms = roomBO.findAll();
+            for (RoomDTO dto : allRooms) {
+                tblRoomDetails.getItems().add(new RoomTM(
+                        dto.getRoom_type_id(),
+                        dto.getRoom_type(),
+                        dto.getKey_money(),
+                        dto.getQty()
+                ));
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-        tblRoomDetails.setItems(tmList);
     }
 
     public void btnAddRoomOnAction(ActionEvent actionEvent) {
@@ -69,18 +76,24 @@ public class RoomsController {
         double keyMoney = Double.parseDouble(txtKeyMoney.getText());
         int roomQTY = Integer.parseInt(txtRoomQTY.getText());
 
-        if (roomBO.add(new RoomDTO(
-                id,
-                roomType,
-                keyMoney,
-                roomQTY
-        ))) {
-            txtRoomTypeID.setText(null);
-            cmbRoomType.getItems().clear();
-            txtKeyMoney.setText(null);
-            txtRoomQTY.setText(null);
-            new Alert(Alert.AlertType.INFORMATION, "Added...!").show();
-            findAll();
+        try {
+            if (roomBO.add(new RoomDTO(
+                    id,
+                    roomType,
+                    keyMoney,
+                    roomQTY
+            ))) {
+                txtRoomTypeID.setText(null);
+                cmbRoomType.getItems().clear();
+                txtKeyMoney.setText(null);
+                txtRoomQTY.setText(null);
+                new Alert(Alert.AlertType.INFORMATION, "Added...!").show();
+                findAll();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to save the course " + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
     }
@@ -91,20 +104,26 @@ public class RoomsController {
         double keyMoney = Double.parseDouble(txtKeyMoney.getText());
         int roomQTY = Integer.parseInt(txtRoomQTY.getText());
 
-        if (roomBO.update(new RoomDTO(
-                id,
-                roomType,
-                keyMoney,
-                roomQTY
-        ))) {
-            txtRoomTypeID.setText(null);
-            cmbRoomType.setValue("");
-            txtKeyMoney.setText(null);
-            txtRoomQTY.setText(null);
-            new Alert(Alert.AlertType.INFORMATION, "Updated...!").show();
-            findAll();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Something Wrong").show();
+        try {
+            if (roomBO.update(new RoomDTO(
+                    id,
+                    roomType,
+                    keyMoney,
+                    roomQTY
+            ))) {
+                txtRoomTypeID.setText(null);
+                cmbRoomType.setValue("");
+                txtKeyMoney.setText(null);
+                txtRoomQTY.setText(null);
+                new Alert(Alert.AlertType.INFORMATION, "Updated...!").show();
+                findAll();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Something Wrong").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to update the course " + id + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
     }
@@ -120,16 +139,16 @@ public class RoomsController {
     public void btnRemoveOnAction(ActionEvent actionEvent) {
 
         String id = tblRoomDetails.getSelectionModel().getSelectedItem().getRoom_type_id();
-
-        boolean roomDelete = roomBO.delete(id);
-
-        if (roomDelete) {
+        try {
+            roomBO.delete(id);
             new Alert(Alert.AlertType.CONFIRMATION,"Delete Successfully", ButtonType.OK).show();
             findAll();
-
-        } else {
-            new Alert(Alert.AlertType.WARNING,"Delete Error",ButtonType.OK).show();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to delete the course " + id).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+
 
     }
 }

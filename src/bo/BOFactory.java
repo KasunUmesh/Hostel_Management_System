@@ -8,16 +8,19 @@ public class BOFactory {
 
     private BOFactory(){}
 
-    public static BOFactory getInstance() {
-        return (null == boFactory) ? boFactory = new BOFactory() : boFactory;
+    public static BOFactory getBoFactory() {
+        if (boFactory == null) {
+            boFactory = new BOFactory();
+        }
+        return boFactory;
     }
 
-    public <T extends SuperBO> T getBO(BOType boType) {
+    public SuperBO getBO(BOType boType) {
         switch (boType) {
             case ROOM:
-                return (T) new RoomBOImpl();
+                return new RoomBOImpl();
             case STUDENT:
-                return (T) new StudentBOImpl();
+                return new StudentBOImpl();
             default:
                 return null;
         }

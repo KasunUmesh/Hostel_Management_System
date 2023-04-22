@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.FactoryConfigration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -54,15 +55,16 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public List<Room> findAll() {
+    public ArrayList<Room> findAll() {
 
+        ArrayList<Room> allRooms = new ArrayList<>();
         Session session = FactoryConfigration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("from Room");
-        List<Room> list = query.list();
+        allRooms = (ArrayList<Room>) query.list();
 
         transaction.commit();
         session.close();
-        return list;
+        return allRooms;
     }
 }

@@ -8,16 +8,19 @@ public class DAOFactory {
 
     private DAOFactory(){}
 
-    public static DAOFactory getInstance() {
-        return (null == daoFactory) ? daoFactory = new DAOFactory() : daoFactory;
+    public static DAOFactory getDaoFactory() {
+        if (daoFactory == null) {
+            daoFactory = new DAOFactory();
+        }
+        return daoFactory;
     }
 
-    public <T extends SuperDAO> T getDAO(DAOType daoType) {
+    public SuperDAO getDAO(DAOType daoType) {
         switch (daoType) {
             case ROOM:
-                return (T) new RoomDAOImpl();
+                return new RoomDAOImpl();
             case STUDENT:
-                return (T) new StudentDAOImpl();
+                return new StudentDAOImpl();
             default:
                 return null;
         }

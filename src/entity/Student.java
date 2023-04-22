@@ -1,9 +1,12 @@
 package entity;
 
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,6 +14,8 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Student implements SuperEntity{
     @Id
     private String student_ID;
@@ -19,4 +24,5 @@ public class Student implements SuperEntity{
     private String contact_no;
     private String dob;
     private String gender;
+
 }
