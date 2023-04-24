@@ -43,7 +43,7 @@
                         <DropShadow />
                      </effect>
                      <children>
-                        <Label layoutX="14.0" layoutY="10.0" text="15">
+                        <Label fx:id="lblStudentCount" layoutX="14.0" layoutY="10.0" text="15">
                            <font>
                               <Font name="System Bold" size="55.0" />
                            </font>
@@ -65,7 +65,7 @@
                         <DropShadow />
                      </effect>
                      <children>
-                        <Label layoutX="14.0" layoutY="10.0" text="10">
+                        <Label fx:id="lblRoomCount" layoutX="14.0" layoutY="10.0" text="10">
                            <font>
                               <Font name="System Bold" size="55.0" />
                            </font>
@@ -87,7 +87,7 @@
                         <DropShadow />
                      </effect>
                      <children>
-                        <Label layoutX="14.0" layoutY="10.0" text="05">
+                        <Label fx:id="lblBookedRoom" layoutX="14.0" layoutY="10.0" text="05">
                            <font>
                               <Font name="System Bold" size="55.0" />
                            </font>

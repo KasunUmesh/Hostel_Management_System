@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.FactoryConfigration;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,5 +120,16 @@ public class RoomDAOImpl implements RoomDAO {
         transaction.commit();
         session.close();
         return allRooms;
+    }
+
+    @Override
+    public BigInteger roomCount() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createSQLQuery("SELECT COUNT(*) FROM Room");
+        BigInteger bigInteger = (BigInteger) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return bigInteger;
     }
 }

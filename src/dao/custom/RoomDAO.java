@@ -13,5 +13,6 @@ public interface RoomDAO extends CrudDAO<Room, String> {
     String generateNewID() throws SQLException, ClassNotFoundException;
     Room getRoomDetails(String room_type) throws SQLException, ClassNotFoundException;
     List<String> getRoomType() throws SQLException, ClassNotFoundException;
+    BigInteger roomCount() throws SQLException, ClassNotFoundException;
 
 }

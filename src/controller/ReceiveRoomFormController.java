@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.custom.impl.RoomDAOImpl;
 import dao.custom.impl.StudentDAOImpl;
+import dto.CustomDTO;
 import dto.ReservationDTO;
 import entity.Room;
 import entity.Student;
@@ -42,6 +43,8 @@ public class ReceiveRoomFormController {
     public JFXComboBox cmbStudentID;
 
     private final ReservationBO reservationBO = (ReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.RESERVATION);
+    public TableColumn colStudentName;
+    public TableColumn colRoomTypeName;
 
     public void initialize() {
         txtResID.setText(generateNewID());
@@ -55,7 +58,9 @@ public class ReceiveRoomFormController {
         colReceiveID.setCellValueFactory(new PropertyValueFactory<>("res_ID"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("resDate"));
         colStudentID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        colStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         colRoomID.setCellValueFactory(new PropertyValueFactory<>("roomID"));
+        colRoomTypeName.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         cmbRoomType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -72,13 +77,15 @@ public class ReceiveRoomFormController {
         tblReceiveRoomDetails.getItems().clear();
 
         try {
-            ArrayList<ReservationDTO> allReceive = reservationBO.getAllDetails();
-            for (ReservationDTO dto : allReceive) {
+            ArrayList<CustomDTO> allReceive = reservationBO.getAllDetails();
+            for (CustomDTO dto : allReceive) {
                 tblReceiveRoomDetails.getItems().add(new ReceiveRoomTM(
                    dto.getRes_ID(),
                    dto.getResDate(),
                    dto.getStudentID(),
+                   dto.getStudentName(),
                    dto.getRoomID(),
+                   dto.getRoomTypeName(),
                    dto.getStatus()
                 ));
             }

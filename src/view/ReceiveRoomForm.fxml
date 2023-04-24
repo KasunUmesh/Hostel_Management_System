@@ -97,11 +97,13 @@
                      <children>
                         <TableView fx:id="tblReceiveRoomDetails" layoutX="43.0" layoutY="67.0" prefHeight="403.0" prefWidth="1247.0">
                            <columns>
-                              <TableColumn fx:id="colReceiveID" prefWidth="190.3333282470703" text="Reservation ID" />
-                              <TableColumn fx:id="colDate" prefWidth="178.66668701171875" text="Date" />
-                              <TableColumn fx:id="colStudentID" prefWidth="216.6666259765625" text="Student ID" />
-                              <TableColumn fx:id="colRoomID" prefWidth="218.0" text="Room Type ID" />
-                              <TableColumn fx:id="colStatus" prefWidth="448.0" text="Status" />
+                              <TableColumn fx:id="colReceiveID" prefWidth="94.66667175292969" text="Reservation ID" />
+                              <TableColumn fx:id="colDate" prefWidth="116.66665649414062" text="Date" />
+                              <TableColumn fx:id="colStudentID" prefWidth="129.0" text="Student ID" />
+                              <TableColumn fx:id="colStudentName" prefWidth="290.0" text="Student Name" />
+                              <TableColumn fx:id="colRoomID" prefWidth="110.33331298828125" text="Room Type ID" />
+                              <TableColumn fx:id="colRoomTypeName" prefWidth="275.66668701171875" text="Room Type Name" />
+                              <TableColumn fx:id="colStatus" prefWidth="231.0" text="Status" />
                            </columns>
                         </TableView>
                         <JFXTextField labelFloat="true" layoutX="908.0" layoutY="21.0" prefHeight="38.0" prefWidth="378.0" promptText="Search">

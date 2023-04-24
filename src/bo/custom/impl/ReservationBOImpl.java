@@ -2,7 +2,9 @@ package bo.custom.impl;
 
 import bo.custom.ReservationBO;
 import dao.DAOFactory;
+import dao.custom.QueryDAO;
 import dao.custom.ReservationDAO;
+import dto.CustomDTO;
 import dto.ReservationDTO;
 import entity.Reservation;
 import entity.Room;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class ReservationBOImpl implements ReservationBO {
 
     private final ReservationDAO reservationDAO = (ReservationDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.RESERVATION);
+    private final QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.QUERYDAO);
 
     @Override
     public boolean addReservation(ReservationDTO dto) throws SQLException, ClassNotFoundException {
@@ -43,15 +46,17 @@ public class ReservationBOImpl implements ReservationBO {
     }
 
     @Override
-    public ArrayList<ReservationDTO> getAllDetails() throws SQLException, ClassNotFoundException {
-        ArrayList<ReservationDTO> allDetails = new ArrayList<>();
-        ArrayList<Reservation> all = reservationDAO.findAll();
-        for (ReservationDTO dto : all) {
-            allDetails.add(new ReservationDTO(
+    public ArrayList<CustomDTO> getAllDetails() throws SQLException, ClassNotFoundException {
+        ArrayList<CustomDTO> allDetails = new ArrayList<>();
+        ArrayList<CustomDTO> all = queryDAO.getAll();
+        for (CustomDTO dto : all) {
+            allDetails.add(new CustomDTO(
                     dto.getRes_ID(),
                     dto.getResDate(),
                     dto.getStudentID(),
+                    dto.getStudentName(),
                     dto.getRoomID(),
+                    dto.getRoomTypeName(),
                     dto.getStatus()
                     ));
         }

@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.FactoryConfigration;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,18 +50,6 @@ public class ReservationDAOImpl implements ReservationDAO {
         session.close();
         return allReservation;
     }
-    @Override
-    public ArrayList<ReservationDTO> getAllReservation() throws SQLException, ClassNotFoundException {
-      /* ArrayList<ReservationDTO> allReservation = new ArrayList<>();
-       Session session =FactoryConfigration.getInstance().getSession();
-       Transaction transaction = session.beginTransaction();
-       Query query = session.createQuery("FROM Reservation");
-       allReservation = (ArrayList<ReservationDTO>) query.list();
-       transaction.commit();
-       session.close();
-       return allReservation;*/
-        return null;
-    }
 
     @Override
     public boolean ifResExist(String id) throws SQLException, ClassNotFoundException {
@@ -89,6 +78,17 @@ public class ReservationDAOImpl implements ReservationDAO {
             return String.format("RS%03d", newResID);
         }
         return "RS001";
+    }
+
+    @Override
+    public BigInteger reservationCount() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfigration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createSQLQuery("SELECT COUNT(*) FROM Reservation");
+        BigInteger bigInteger = (BigInteger) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return bigInteger;
     }
 
 

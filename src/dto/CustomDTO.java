@@ -1,17 +1,16 @@
-package view.tm;
+package dto;
 
-import entity.Room;
-import entity.Student;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-public class ReceiveRoomTM implements Comparable<ReceiveRoomTM>{
+public class CustomDTO implements Serializable {
     private String res_ID;
     private LocalDate resDate;
     private String studentID;
@@ -19,9 +18,4 @@ public class ReceiveRoomTM implements Comparable<ReceiveRoomTM>{
     private String roomID;
     private String roomTypeName;
     private String status;
-
-    @Override
-    public int compareTo(ReceiveRoomTM o) {
-        return 0;
-    }
 }

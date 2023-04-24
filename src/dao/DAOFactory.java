@@ -1,5 +1,6 @@
 package dao;
 
+import dao.custom.impl.QueryDAOImpl;
 import dao.custom.impl.ReservationDAOImpl;
 import dao.custom.impl.RoomDAOImpl;
 import dao.custom.impl.StudentDAOImpl;
@@ -24,12 +25,14 @@ public class DAOFactory {
                 return new StudentDAOImpl();
             case RESERVATION:
                 return new ReservationDAOImpl();
+            case QUERYDAO:
+                return new QueryDAOImpl();
             default:
                 return null;
         }
     }
 
     public enum DAOType {
-        ROOM, STUDENT, RESERVATION
+        ROOM, STUDENT, RESERVATION, QUERYDAO
     }
 }
